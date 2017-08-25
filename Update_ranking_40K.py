@@ -2,6 +2,10 @@ from cement.core.foundation import CementApp
 from cement.core.controller import CementBaseController, expose
 import configuration as config
 # from Ssh_server_ops import Ssh_server_ops
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), './libs', 'ssh_operations'))
+import server_operate as server_ops
+
 
 class MyBaseController(CementBaseController):
     class Meta:
@@ -22,6 +26,7 @@ class MyBaseController(CementBaseController):
         print "2) Update the server to newest version"
         print config.configuration['name_server']
         # sshops = Ssh_server_ops()
+        server_ops.run()
         if self.app.pargs.foo:
             print("Recieved option: foo => %s" % self.app.pargs.foo)
 
